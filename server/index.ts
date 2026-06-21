@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
 import analyzeRouter from './routes/analyze.js';
 
 dotenv.config();
@@ -25,6 +26,18 @@ app.get('/api/health', (req, res) => {
 
 // Mount analyze route
 app.use('/api/analyze', analyzeRouter);
+
+// Serve React build in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(
+    path.join(__dirname, '../../client/dist')
+  ));
+  app.get('*', (_req, res) => {
+    res.sendFile(
+      path.join(__dirname, '../../client/dist/index.html')
+    );
+  });
+}
 
 // Start server
 app.listen(PORT, () => {
