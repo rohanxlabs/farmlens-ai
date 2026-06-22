@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import UploadCard from '../components/UploadCard';
 import ResultCard from '../components/ResultCard';
+import ScanHistory from '../components/ScanHistory';
+import ScanningLoader from '../components/ScanningLoader';
 import type { AnalysisResult } from '../components/ResultCard';
 import ScanningLoader from '../components/ScanningLoader';
 import ScanHistory from '../components/ScanHistory';
@@ -108,6 +110,7 @@ export default function Home() {
           </div>
         )}
 
+<<<<<<< HEAD
         <div style={{
           height: '1px',
           margin: '40px 0',
@@ -123,6 +126,18 @@ export default function Home() {
         }} />
 
         <FarmAdvisor />
+=======
+        {/* Divider */}
+        <div
+          className="h-px my-10"
+          style={{
+            background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)'
+          }}
+        />
+
+        {/* Scan History */}
+        <ScanHistory key={scanKey} />
+>>>>>>> 6b2041f152492a2c77aa1b5a1bac61ac69606cbe
 
         {/* Footer */}
         <div className="text-center mt-15">

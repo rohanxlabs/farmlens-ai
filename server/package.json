@@ -9,14 +9,22 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@neondatabase/serverless": "^1.1.0",
+=======
+    "@neondatabase/serverless": "^0.9.5",
+>>>>>>> 6b2041f152492a2c77aa1b5a1bac61ac69606cbe
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/multer": "^1.4.11",
     "@types/node": "^20.10.5",
     "axios": "^1.6.0",
     "cors": "^2.8.5",
+<<<<<<< HEAD
     "dotenv": "^16.6.1",
+=======
+    "dotenv": "^16.3.1",
+>>>>>>> 6b2041f152492a2c77aa1b5a1bac61ac69606cbe
     "express": "^4.18.2",
     "multer": "^1.4.5-lts.1",
     "typescript": "^5.3.3"
