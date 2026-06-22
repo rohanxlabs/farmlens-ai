@@ -45,7 +45,7 @@ Upload a photo of your crop → FarmLens AI identifies the disease, confidence l
 | Frontend | React + Vite + TypeScript |
 | Styling | Tailwind CSS |
 | Backend | Node.js + Express |
-| AI Vision | Google Gemini 1.5 Flash |
+| AI Vision |  |
 | Deployment | Render |
 
 ---

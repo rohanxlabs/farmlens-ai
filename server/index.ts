@@ -3,12 +3,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
 import analyzeRouter from './routes/analyze.js';
-<<<<<<< HEAD
 import chatRouter from './routes/chat.js';
 import { initDB, getScans } from './db.js';
-=======
-import { initDB, getScans } from './db';
->>>>>>> 6b2041f152492a2c77aa1b5a1bac61ac69606cbe
 
 dotenv.config();
 
@@ -41,18 +37,6 @@ app.get('/api/scans', async (_req, res) => {
   } catch (err) {
     console.error('Error fetching scans:', err);
     res.status(500).json({
-      error: 'Failed to fetch scans'
-    });
-  }
-});
-
-app.get('/api/scans', async (_req, res) => {
-  try {
-    const scans = await getScans();
-    res.json(scans);
-  } catch (err) {
-    console.error('Error fetching scans:', err);
-    res.status(500).json({
       error: 'Failed to fetch scan history'
     });
   }
@@ -73,15 +57,10 @@ if (process.env.NODE_ENV === 'production') {
 // Start server
 app.listen(PORT, async () => {
   await initDB();
-<<<<<<< HEAD
   console.log(
     `🚀 FarmLens AI server running on http://localhost:${PORT}`
   );
   console.log(
     `📡 API endpoints available at http://localhost:${PORT}/api`
   );
-=======
-  console.log(`🚀 FarmLens AI server running on http://localhost:${PORT}`);
-  console.log(`📡 API endpoints available at http://localhost:${PORT}/api`);
->>>>>>> 6b2041f152492a2c77aa1b5a1bac61ac69606cbe
 });
