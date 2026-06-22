@@ -1,0 +1,263 @@
+import { useNavigate } from 'react-router-dom';
+
+export default function Landing() {
+  const navigate = useNavigate();
+
+  const scrollToFeatures = () => {
+    const featuresSection = document.getElementById('how-it-works');
+    if (featuresSection) {
+      featuresSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <div style={{ backgroundColor: '#060a06', color: '#F0FDF4' }}>
+      {/* Orbs */}
+      <div className="fixed top-0 left-0 w-full h-full z-[-1] overflow-hidden">
+        <div 
+          className="absolute top-[20%] left-[10%] w-[400px] h-[400px] bg-green-500/20 rounded-full blur-[150px]"
+          style={{ background: 'radial-gradient(circle, rgba(74, 222, 128, 0.1) 0%, rgba(74, 222, 128, 0) 70%)' }}
+        />
+        <div 
+          className="absolute bottom-[10%] right-[5%] w-[500px] h-[500px] bg-green-500/20 rounded-full blur-[180px]"
+          style={{ background: 'radial-gradient(circle, rgba(74, 222, 128, 0.08) 0%, rgba(74, 222, 128, 0) 70%)' }}
+        />
+      </div>
+
+      {/* Navbar */}
+      <nav 
+        className="sticky top-0 z-50"
+        style={{
+          background: 'rgba(6,10,6,0.8)',
+          backdropFilter: 'blur(20px)',
+          borderBottom: '1px solid rgba(255,255,255,0.06)',
+          padding: '16px 24px',
+          maxWidth: '100%',
+        }}
+      >
+        <div className="max-w-[1100px] mx-auto flex justify-between items-center">
+          <div style={{ color: '#F0FDF4', fontSize: '18px', fontWeight: 700 }}>
+            🌿 FarmLens AI
+          </div>
+          <button
+            onClick={() => navigate('/scan')}
+            style={{
+              background: 'rgba(74,222,128,0.15)',
+              border: '1px solid rgba(74,222,128,0.3)',
+              color: '#4ADE80',
+              padding: '8px 20px',
+              borderRadius: '10px',
+              fontSize: '14px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'all 0.2s',
+            }}
+            onMouseOver={(e) => e.currentTarget.style.background = 'rgba(74,222,128,0.25)'}
+            onMouseOut={(e) => e.currentTarget.style.background = 'rgba(74,222,128,0.15)'}
+          >
+            Try it free →
+          </button>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <header className="max-w-[800px] mx-auto px-6 pt-[100px] pb-20 text-center">
+        <div 
+          className="inline-block mb-8"
+          style={{
+            background: 'rgba(255,255,255,0.03)',
+            backdropFilter: 'blur(24px)',
+            border: '1px solid rgba(255,255,255,0.08)',
+            borderRadius: '9999px',
+            padding: '8px 16px',
+            fontSize: '13px',
+            color: 'rgba(240,253,244,0.7)'
+          }}
+        >
+          🔬 Powered by Vision AI
+        </div>
+        <h1 
+          className="text-6xl font-extrabold tracking-tighter leading-tight mb-6"
+          style={{
+            background: 'linear-gradient(135deg, #F0FDF4 0%, #4ADE80 60%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            fontSize: '64px',
+            letterSpacing: '-2px',
+            lineHeight: 1.1,
+          }}
+        >
+          Detect Crop Diseases<br />Before They Spread
+        </h1>
+        <p 
+          className="text-lg max-w-[540px] mx-auto mb-10"
+          style={{ color: 'rgba(240,253,244,0.55)', lineHeight: 1.7 }}
+        >
+          Upload a photo of your crop and get instant AI-powered disease diagnosis, confidence scores, and treatment plans — completely free.
+        </p>
+        <div className="flex gap-3 justify-center">
+          <button
+            onClick={() => navigate('/scan')}
+            className="hover:translate-y-[-2px] transition-transform"
+            style={{
+              background: 'linear-gradient(135deg, rgba(74,222,128,0.2), rgba(34,197,94,0.1))',
+              border: '1px solid rgba(74,222,128,0.4)',
+              color: '#4ADE80',
+              padding: '14px 32px',
+              borderRadius: '12px',
+              fontSize: '16px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'all 0.2s',
+            }}
+            onMouseOver={(e) => e.currentTarget.style.boxShadow = '0 0 32px rgba(74,222,128,0.2)'}
+            onMouseOut={(e) => e.currentTarget.style.boxShadow = 'none'}
+          >
+            Analyze Your Crop →
+          </button>
+          <button
+            onClick={scrollToFeatures}
+            style={{
+              background: 'transparent',
+              border: '1px solid rgba(255,255,255,0.1)',
+              color: 'rgba(240,253,244,0.5)',
+              padding: '14px 32px',
+              borderRadius: '12px',
+              fontSize: '16px',
+              cursor: 'pointer',
+            }}
+          >
+            See how it works ↓
+          </button>
+        </div>
+        <div className="flex gap-8 justify-center mt-16">
+          <div>
+            <div style={{ fontSize: '32px', fontWeight: 800, color: '#4ADE80' }}>50+</div>
+            <div style={{ fontSize: '13px', color: 'rgba(240,253,244,0.4)', marginTop: '4px' }}>Crop Diseases Detected</div>
+          </div>
+          <div>
+            <div style={{ fontSize: '32px', fontWeight: 800, color: '#4ADE80' }}>97%</div>
+            <div style={{ fontSize: '13px', color: 'rgba(240,253,244,0.4)', marginTop: '4px' }}>Average Accuracy</div>
+          </div>
+          <div>
+            <div style={{ fontSize: '32px', fontWeight: 800, color: '#4ADE80' }}>Free</div>
+            <div style={{ fontSize: '13px', color: 'rgba(240,253,244,0.4)', marginTop: '4px' }}>No signup required</div>
+          </div>
+        </div>
+      </header>
+
+      {/* How It Works Section */}
+      <section id="how-it-works" className="max-w-[1000px] mx-auto py-20 px-6 text-center">
+        <div style={{ letterSpacing: '3px', fontSize: '11px', color: 'rgba(74,222,128,0.6)', fontWeight: 600, marginBottom: '12px' }}>
+          HOW IT WORKS
+        </div>
+        <h2 className="text-4xl font-bold text-white mb-16" style={{color: '#F0FDF4'}}>
+          Three steps to healthy crops
+        </h2>
+        <div className="grid md:grid-cols-3 gap-6 text-left">
+          <div style={{ background: 'rgba(255,255,255,0.03)', backdropFilter: 'blur(24px)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '24px', padding: '32px' }}>
+            <div style={{ fontSize: '48px', fontWeight: 800, color: 'rgba(74,222,128,0.15)', marginBottom: '16px' }}>01</div>
+            <h3 className="text-lg font-semibold mb-2" style={{color: '#F0FDF4'}}>Upload Photo</h3>
+            <p style={{ fontSize: '14px', color: 'rgba(240,253,244,0.45)', lineHeight: 1.6 }}>
+              Take a photo of your diseased crop and upload it to FarmLens AI
+            </p>
+          </div>
+          <div style={{ background: 'rgba(255,255,255,0.03)', backdropFilter: 'blur(24px)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '24px', padding: '32px' }}>
+            <div style={{ fontSize: '48px', fontWeight: 800, color: 'rgba(74,222,128,0.15)', marginBottom: '16px' }}>02</div>
+            <h3 className="text-lg font-semibold mb-2" style={{color: '#F0FDF4'}}>AI Analysis</h3>
+            <p style={{ fontSize: '14px', color: 'rgba(240,253,244,0.45)', lineHeight: 1.6 }}>
+              Our vision AI powered by OpenRouter analyzes the image and identifies the disease instantly
+            </p>
+          </div>
+          <div style={{ background: 'rgba(255,255,255,0.03)', backdropFilter: 'blur(24px)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '24px', padding: '32px' }}>
+            <div style={{ fontSize: '48px', fontWeight: 800, color: 'rgba(74,222,128,0.15)', marginBottom: '16px' }}>03</div>
+            <h3 className="text-lg font-semibold mb-2" style={{color: '#F0FDF4'}}>Get Treatment</h3>
+            <p style={{ fontSize: '14px', color: 'rgba(240,253,244,0.45)', lineHeight: 1.6 }}>
+              Receive a precise treatment plan with pesticide name, dosage, and spray schedule
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="max-w-[1000px] mx-auto px-6 pb-20">
+        <div className="text-center">
+          <div style={{ letterSpacing: '3px', fontSize: '11px', color: 'rgba(74,222,128,0.6)', fontWeight: 600, marginBottom: '12px' }}>
+            FEATURES
+          </div>
+          <h2 className="text-4xl font-bold mb-16" style={{color: '#F0FDF4'}}>
+            Everything you need
+          </h2>
+        </div>
+        <div className="grid md:grid-cols-3 gap-4">
+          {[
+            { icon: '🔬', title: 'Instant Diagnosis', desc: 'Get disease identification in under 3 seconds' },
+            { icon: '📊', title: 'Confidence Score', desc: 'Know exactly how certain the AI is about its diagnosis' },
+            { icon: '💊', title: 'Treatment Plans', desc: 'Specific pesticide, dosage and spray schedule for each disease' },
+            { icon: '📱', title: 'Mobile Friendly', desc: 'Works perfectly on any device, no app download needed' },
+            { icon: '🆓', title: 'Completely Free', desc: 'No signup, no credit card, no limits on free tier' },
+            { icon: '🌿', title: '50+ Diseases', desc: 'Detects diseases across all major crop types' },
+          ].map(feature => (
+            <div key={feature.title} style={{ background: 'rgba(255,255,255,0.03)', backdropFilter: 'blur(24px)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '24px', padding: '24px' }}>
+              <div style={{ fontSize: '28px', marginBottom: '12px' }}>{feature.icon}</div>
+              <h3 className="text-[15px] font-semibold mb-2" style={{color: '#F0FDF4'}}>{feature.title}</h3>
+              <p style={{ fontSize: '13px', color: 'rgba(240,253,244,0.45)', lineHeight: 1.5 }}>{feature.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="max-w-[700px] mx-auto px-6 pb-24">
+        <div 
+          className="text-center"
+          style={{ 
+            background: 'rgba(255,255,255,0.03)', 
+            backdropFilter: 'blur(24px)', 
+            border: '1px solid rgba(255,255,255,0.08)', 
+            borderRadius: '24px', 
+            padding: '60px 40px',
+            boxShadow: '0 0 80px rgba(74,222,128,0.06)'
+          }}
+        >
+          <h2 className="text-4xl font-bold mb-4" style={{color: '#F0FDF4'}}>Ready to protect your crops?</h2>
+          <p className="mb-8" style={{ color: 'rgba(240,253,244,0.5)' }}>
+            Start detecting diseases for free. No account needed.
+          </p>
+          <button
+            onClick={() => navigate('/scan')}
+            className="hover:translate-y-[-2px] transition-transform"
+            style={{
+              background: 'linear-gradient(135deg, rgba(74,222,128,0.2), rgba(34,197,94,0.1))',
+              border: '1px solid rgba(74,222,128,0.4)',
+              color: '#4ADE80',
+              padding: '16px 48px',
+              borderRadius: '12px',
+              fontSize: '17px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'all 0.2s',
+            }}
+            onMouseOver={(e) => e.currentTarget.style.boxShadow = '0 0 32px rgba(74,222,128,0.2)'}
+            onMouseOut={(e) => e.currentTarget.style.boxShadow = 'none'}
+          >
+            Start Analyzing Now →
+          </button>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer 
+        className="text-center py-8 px-6"
+        style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
+      >
+        <p style={{ color: 'rgba(240,253,244,0.25)', fontSize: '13px' }}>
+          🌿 FarmLens AI — Built by Eren
+        </p>
+        <p style={{ color: 'rgba(240,253,244,0.15)', fontSize: '12px', marginTop: '8px' }}>
+          Powered by OpenRouter · React · Express · Neon PostgreSQL
+        </p>
+      </footer>
+    </div>
+  );
+}
