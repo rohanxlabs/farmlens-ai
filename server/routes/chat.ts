@@ -43,7 +43,10 @@ Always give actionable advice.`
       }
     )
 
-    const data = await response.json()
+    const data = (await response.json()) as {
+      choices?: { message: { content: string } }[]
+      error?: { message: string }
+    }
 
     if (!response.ok) {
       console.error('OpenRouter Error:', data)
