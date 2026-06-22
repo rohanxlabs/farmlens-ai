@@ -1,9 +1,9 @@
-import 'dotenv/config'
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
 import analyzeRouter from './routes/analyze.js';
+import chatRouter from './routes/chat.js';
 import { initDB, getScans } from './db.js';
 
 dotenv.config();
@@ -28,6 +28,7 @@ app.get('/api/health', (req, res) => {
 
 // Mount analyze route
 app.use('/api/analyze', analyzeRouter);
+app.use('/api/chat', chatRouter);
 
 app.get('/api/scans', async (_req, res) => {
   try {

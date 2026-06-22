@@ -4,6 +4,7 @@ import ResultCard from '../components/ResultCard';
 import type { AnalysisResult } from '../components/ResultCard';
 import ScanningLoader from '../components/ScanningLoader';
 import ScanHistory from '../components/ScanHistory';
+import FarmAdvisor from '../components/FarmAdvisor';
 
 export default function Home() {
   const [result, setResult] = useState<AnalysisResult | null>(null);
@@ -114,6 +115,14 @@ export default function Home() {
         }} />
 
         <ScanHistory refreshKey={scanKey} />
+
+        <div style={{
+          height: '1px',
+          margin: '40px 0',
+          background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)'
+        }} />
+
+        <FarmAdvisor />
 
         {/* Footer */}
         <div className="text-center mt-15">
