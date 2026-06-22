@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import UploadCard from '../components/UploadCard';
 import ResultCard from '../components/ResultCard';
+import ScanHistory from '../components/ScanHistory';
+import ScanningLoader from '../components/ScanningLoader';
 import type { AnalysisResult } from '../components/ResultCard';
 
 export default function Home() {
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [scanKey, setScanKey] = useState(0);
 
   const handleAnalyze = async (file: File) => {
     setIsLoading(true);
@@ -28,6 +31,7 @@ export default function Home() {
 
       const data = await response.json();
       setResult(data);
+      setScanKey(prev => prev + 1);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong');
     } finally {
@@ -76,30 +80,7 @@ export default function Home() {
         <UploadCard onAnalyze={handleAnalyze} />
 
         {/* Loading State */}
-        {isLoading && (
-          <div
-            className="w-full rounded-2xl border p-8 text-center mt-6"
-            style={{
-              backgroundColor: 'rgba(255,255,255,0.05)',
-              backdropFilter: 'blur(20px) saturate(180%)',
-              borderColor: 'rgba(255,255,255,0.08)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.4)'
-            }}
-          >
-            <div className="flex items-center justify-center gap-3 mb-2">
-              <div
-                className="w-2 h-2 rounded-full animate-pulse"
-                style={{ backgroundColor: '#4ADE80' }}
-              />
-              <span className="text-lg font-semibold" style={{ color: '#F0FDF4' }}>
-                🔬 Analyzing your crop...
-              </span>
-            </div>
-            <p className="text-sm" style={{ color: '#6B7280' }}>
-              This takes 2-3 seconds
-            </p>
-          </div>
-        )}
+        {isLoading && <ScanningLoader />}
 
         {/* Error State */}
         {error && (
@@ -125,6 +106,17 @@ export default function Home() {
             <ResultCard result={result} />
           </div>
         )}
+
+        {/* Divider */}
+        <div
+          className="h-px my-10"
+          style={{
+            background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)'
+          }}
+        />
+
+        {/* Scan History */}
+        <ScanHistory key={scanKey} />
 
         {/* Footer */}
         <div className="text-center mt-15">
