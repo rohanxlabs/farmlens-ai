@@ -1,8 +1,10 @@
+import 'dotenv/config'
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
 import analyzeRouter from './routes/analyze.js';
+import { initDB, getScans } from './db.js';
 
 dotenv.config();
 
@@ -27,6 +29,18 @@ app.get('/api/health', (req, res) => {
 // Mount analyze route
 app.use('/api/analyze', analyzeRouter);
 
+app.get('/api/scans', async (_req, res) => {
+  try {
+    const scans = await getScans();
+    res.json(scans);
+  } catch (err) {
+    console.error('Error fetching scans:', err);
+    res.status(500).json({
+      error: 'Failed to fetch scans'
+    });
+  }
+});
+
 // Serve React build in production
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(
@@ -40,7 +54,12 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Start server
-app.listen(PORT, () => {
-  console.log(`🚀 FarmLens AI server running on http://localhost:${PORT}`);
-  console.log(`📡 API endpoints available at http://localhost:${PORT}/api`);
+app.listen(PORT, async () => {
+  await initDB();
+  console.log(
+    `🚀 FarmLens AI server running on http://localhost:${PORT}`
+  );
+  console.log(
+    `📡 API endpoints available at http://localhost:${PORT}/api`
+  );
 });

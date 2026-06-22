@@ -1,6 +1,7 @@
 import express from 'express';
 import multer from 'multer';
 import { analyzeImage } from '../services/openrouter.js';
+import { saveScan } from '../db.js';
 
 const router = express.Router();
 
@@ -23,6 +24,13 @@ router.post('/', upload.single('image'), async (req, res) => {
 
     // Call OpenRouter service to analyze the image
     const result = await analyzeImage(imageBuffer, mimeType);
+
+    try {
+      await saveScan(result);
+      console.log('✅ Scan saved to database');
+    } catch (err) {
+      console.error('Failed to save scan:', err);
+    }
 
     res.json(result);
   } catch (error: any) {
