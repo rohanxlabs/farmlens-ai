@@ -5,6 +5,7 @@ import path from 'path';
 import analyzeRouter from './routes/analyze.js';
 import chatRouter from './routes/chat.js';
 import weatherRouter from './routes/weather.js';
+import authRouter from './routes/auth.js';
 import { initDB, getScans } from './db.js';
 
 dotenv.config();
@@ -30,6 +31,7 @@ app.get('/api/health', (req, res) => {
 // Mount analyze route
 app.use('/api/analyze', analyzeRouter);
 app.use('/api/weather', weatherRouter);
+app.use('/api/auth', authRouter);
 app.use('/api/chat', chatRouter);
 
 app.get('/api/scans', async (_req, res) => {

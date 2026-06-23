@@ -1,8 +1,19 @@
-import { useNavigate } from 'react-router-dom' 
+import { useNavigate, useLocation } from 'react-router-dom' 
+import { useState, useEffect } from 'react'
+import AuthModal from '../components/auth/AuthModal'
   
  export default function Landing() { 
    const navigate = useNavigate() 
-  
+   const location = useLocation()
+   const [authModalOpen, setAuthModalOpen] = useState(false)
+ 
+   useEffect(() => {
+     if (location.state?.authRequired) {
+       setAuthModalOpen(true)
+       navigate(location.pathname, { replace: true, state: {} })
+     }
+   }, [location, navigate])
+ 
    const scrollToFeatures = () => { 
      document.getElementById('features') 
        ?.scrollIntoView({ behavior: 'smooth' }) 
@@ -114,9 +125,9 @@ import { useNavigate } from 'react-router-dom'
            }}> 
              🌿 FarmLens AI 
            </span> 
-           <button 
-             className="nav-btn" 
-             onClick={() => navigate('/scan')} 
+            <button 
+              className="nav-btn" 
+              onClick={() => setAuthModalOpen(true)} 
              style={{ 
                background: 'rgba(74,222,128,0.15)', 
                border: '1px solid rgba(74,222,128,0.3)', 
@@ -202,9 +213,9 @@ import { useNavigate } from 'react-router-dom'
            justifyContent: 'center', 
            flexWrap: 'wrap' 
          }}> 
-           <button 
-             className="hero-btn-primary" 
-             onClick={() => navigate('/scan')} 
+            <button 
+              className="hero-btn-primary" 
+              onClick={() => setAuthModalOpen(true)} 
              style={{ 
                background: 'linear-gradient(135deg, rgba(74,222,128,0.2), rgba(34,197,94,0.1))', 
                border: '1px solid rgba(74,222,128,0.4)', 
@@ -503,9 +514,9 @@ import { useNavigate } from 'react-router-dom'
              Start detecting diseases for free. 
              No account needed. 
            </p> 
-           <button 
-             className="hero-btn-primary" 
-             onClick={() => navigate('/scan')} 
+            <button 
+              className="hero-btn-primary" 
+              onClick={() => setAuthModalOpen(true)} 
              style={{ 
                background: 'linear-gradient(135deg, rgba(74,222,128,0.2), rgba(34,197,94,0.1))', 
                border: '1px solid rgba(74,222,128,0.4)', 
@@ -546,9 +557,10 @@ import { useNavigate } from 'react-router-dom'
            Powered by OpenRouter · React ·  
            Express · Neon PostgreSQL 
          </p> 
-       </footer> 
-     </div> 
-   ) 
- }
+        </footer> 
+        <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} onSuccess={() => navigate('/scan')} />
+      </div> 
+    ) 
+  }
 
 
