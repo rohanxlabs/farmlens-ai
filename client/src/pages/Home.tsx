@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import WeatherCard from '../components/WeatherCard';
 import UploadCard from '../components/UploadCard';
 import ResultCard from '../components/ResultCard';
 import ScanHistory from '../components/ScanHistory';
@@ -78,6 +79,7 @@ export default function Home() {
         </div>
 
         {/* Upload Card */}
+        <WeatherCard />
         <UploadCard onAnalyze={handleAnalyze} />
 
         {/* Loading State */}
